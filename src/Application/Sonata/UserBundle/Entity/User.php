@@ -15,7 +15,6 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -50,5 +49,20 @@ class User extends BaseUser
         return $this->id;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getVenues()
+    {
+        return $this->venues;
+    }
+
+    /**
+     * @param $venues
+     */
+    public function setVenues($venues)
+    {
+        $this->venues = $venues;
+    }
 
 }
