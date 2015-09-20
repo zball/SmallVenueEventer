@@ -2,10 +2,21 @@ services:
     sonata.admin.venue:
         class: AppBundle\Admin\VenueAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Venue" }
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Venues" }
         arguments:
             - ~
             - AppBundle\Entity\Venue
             - ~
         calls:
             - [ setTranslationDomain, [AppBundle]]
+
+    sonata.admin.event:
+            class: AppBundle\Admin\EventAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Content", label: "Events" }
+            arguments:
+                - ~
+                - AppBundle\Entity\Event
+                - ~
+            calls:
+                - [ setTranslationDomain, [AppBundle]]

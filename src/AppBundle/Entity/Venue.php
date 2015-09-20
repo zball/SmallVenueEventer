@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Venue
@@ -61,6 +62,15 @@ class Venue
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Event", mappedBy="venue")
+     **/
+    private $events;
+
+    public function __construct() {
+        $this->events = new ArrayCollection();
+    }
 
 
     /**
@@ -211,5 +221,43 @@ class Venue
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add events
+     *
+     * @param \AppBundle\Entity\Event $events
+     * @return Venue
+     */
+    public function addEvent(\AppBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \AppBundle\Entity\Event $events
+     */
+    public function removeEvent(\AppBundle\Entity\Event $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getName();
     }
 }
