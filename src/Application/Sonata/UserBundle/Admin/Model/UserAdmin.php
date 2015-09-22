@@ -89,7 +89,7 @@ class UserAdmin extends SonataUserAdmin
         ;
 
         $formMapper->tab('Venues')
-            ->add('venues', 'sonata_type_collection')
+            ->add('venues', 'sonata_type_collection', ['label' => 'Venues'])
             ->end();
     }
 

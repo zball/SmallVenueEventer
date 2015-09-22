@@ -23,7 +23,18 @@ class EventAdmin extends Admin{
             ])
             ->add('eventStart', 'sonata_type_datetime_picker')
             ->add('eventEnd', 'sonata_type_datetime_picker')
-            ->add('allAges', 'sonata_type_boolean')
+            ->add('minAge', 'choice', [
+                'choices' => [
+                    'all_ages' => 'All Ages',
+                    '13' => '13',
+                    '16' => '16',
+                    '18' => '18',
+                    '21' => '21'
+                ],
+                'data' => 'all_ages'
+            ])
+            ->add('maxCapacity')
+
         ;
 
     }

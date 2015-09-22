@@ -50,11 +50,18 @@ class Event
     private $eventEnd;
 
     /**
-     * @var boolean
-     * @ORM\Column(name="allAges", type="boolean")
-     * @Assert\Type(type="bool", message="Type must be boolean.")
+     * @var string
+     * @ORM\Column(name="minAge", type="string", length=10)
      **/
-    private $allAges;
+    private $minAge;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="maxCapacity", type="smallint")
+     * @Assert\GreaterThan(value="0")
+     */
+    private $maxCapacity;
 
 
     /**
@@ -174,26 +181,51 @@ class Event
         return $this->eventEnd;
     }
 
+
+
     /**
-     * Set allAges
+     * Set minAge
      *
-     * @param boolean $allAges
+     * @param string $minAge
      * @return Event
      */
-    public function setAllAges($allAges)
+    public function setMinAge($minAge)
     {
-        $this->allAges = $allAges;
+        $this->minAge = $minAge;
 
         return $this;
     }
 
     /**
-     * Get allAges
+     * Get minAge
      *
-     * @return boolean 
+     * @return string 
      */
-    public function isAllAges()
+    public function getMinAge()
     {
-        return $this->allAges;
+        return $this->minAge;
+    }
+
+    /**
+     * Set maxCapacity
+     *
+     * @param integer $maxCapacity
+     * @return Event
+     */
+    public function setMaxCapacity($maxCapacity)
+    {
+        $this->maxCapacity = $maxCapacity;
+
+        return $this;
+    }
+
+    /**
+     * Get maxCapacity
+     *
+     * @return integer 
+     */
+    public function getMaxCapacity()
+    {
+        return $this->maxCapacity;
     }
 }
