@@ -33,3 +33,12 @@ sonata_user_change_password:
 sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
+
+sylius_cart:
+    resource: '@SyliusCartBundle/Resources/config/routing.yml'
+    prefix: /cart
+
+#test_cart:
+#    resource: "@AppBundle/Controller/"
+#    type:     annotation
+#    prefix:   /testCart

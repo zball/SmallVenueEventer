@@ -32,6 +32,8 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    serializer:
+        enabled: true
 
 # Twig Configuration
 twig:
@@ -111,5 +113,18 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
+
+
+sylius_cart:
+    resolver: app.cart_item_resolver # The id of our newly created service.
+    classes:
+        cart:
+            controller: AppBundle\Controller\CartController
+
+sylius_order:
+    driver: doctrine/orm # Configure the doctrine orm driver used in documentation.
+
+sylius_money: ~
+
 
 

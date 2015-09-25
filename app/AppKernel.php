@@ -8,6 +8,10 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
+            new Sylius\Bundle\MoneyBundle\SyliusMoneyBundle(),
+            new Sylius\Bundle\OrderBundle\SyliusOrderBundle(),
+            new Sylius\Bundle\CartBundle\SyliusCartBundle(),
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -23,6 +27,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new AppBundle\AppBundle(),
