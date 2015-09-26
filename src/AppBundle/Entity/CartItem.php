@@ -19,16 +19,32 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CartItem extends BaseCartItem
 {
-    private $product;
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ticket")
+     */
+    private $ticket;
 
-    public function getProduct()
+
+    /**
+     * Set ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     * @return CartItem
+     */
+    public function setTicket(\AppBundle\Entity\Ticket $ticket = null)
     {
-        return $this->product;
+        $this->ticket = $ticket;
+
+        return $this;
     }
 
-    public function setProduct(Product $product)
+    /**
+     * Get ticket
+     *
+     * @return \AppBundle\Entity\Ticket 
+     */
+    public function getTicket()
     {
-        $this->product = $product;
+        return $this->ticket;
     }
-
 }
