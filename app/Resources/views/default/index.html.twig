@@ -39,6 +39,8 @@
                     <a href="http://symfony.com/doc/{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION')[:3] }}/book/page_creation.html">
                         How to create your first page in Symfony
                     </a>
+
+                    <a href="{{ path('sylius_cart_item_add', {'productId': ticket.id}) }}">Add product to cart</a>
                 </p>
             </div>
 

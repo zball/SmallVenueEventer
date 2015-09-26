@@ -31,7 +31,7 @@ class ItemResolver implements ItemResolverInterface
         }
 
         // Assign the product to the item and define the unit price.
-        $item->setVariant($product);
+        $item->setTicket($product);
         $item->setUnitPrice($product->getPrice());
 
         // Everything went fine, return the item.
