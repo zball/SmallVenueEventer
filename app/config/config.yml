@@ -32,8 +32,6 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
-    serializer:
-        enabled: true
 
 # Twig Configuration
 twig:
