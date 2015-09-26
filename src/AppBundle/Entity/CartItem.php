@@ -14,9 +14,21 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Event
  *
- * @ORM\Table()
+ * @ORM\Table(name="app_cart_item")
  * @ORM\Entity
  */
 class CartItem extends BaseCartItem
 {
+    private $product;
+
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
+    }
+
 }
