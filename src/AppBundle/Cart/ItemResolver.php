@@ -40,6 +40,6 @@ class ItemResolver implements ItemResolverInterface
 
     private function getProductRepository()
     {
-        return $this->entityManager->getRepository('AppBundle:Product');
+        return $this->entityManager->getRepository('AppBundle:Ticket');
     }
 }
