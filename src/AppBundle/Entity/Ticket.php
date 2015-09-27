@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Product;
 
 /**
  * Ticket
@@ -10,25 +11,28 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\TicketRepository")
  */
-class Ticket
+class Ticket extends Product
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="barcode")
      */
-    private $id;
-
+    private $barcode;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @return int
      */
-    public function getId()
+    public function getBarcode()
     {
-        return $this->id;
+        return $this->barcode;
+    }
+
+    /**
+     * @param int $barcode
+     */
+    public function setBarcode($barcode)
+    {
+        $this->barcode = $barcode;
     }
 }

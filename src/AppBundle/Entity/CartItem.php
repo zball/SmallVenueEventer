@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zacball
- * Date: 9/22/15
- * Time: 3:42 AM
- */
 
 namespace AppBundle\Entity;
 
@@ -12,7 +6,7 @@ use Sylius\Component\Cart\Model\CartItem as BaseCartItem;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Event
+ * Cart Item
  *
  * @ORM\Table(name="app_cart_item")
  * @ORM\Entity
