@@ -121,6 +121,9 @@ sylius_cart:
 
 sylius_order:
     driver: doctrine/orm # Configure the doctrine orm driver used in documentation.
+    classes:
+        order_item:
+            model: AppBundle\Entity\CartItem # If you have created a custom CartItem entity.
 
 sylius_money: ~
 
