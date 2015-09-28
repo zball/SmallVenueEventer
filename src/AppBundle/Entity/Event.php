@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Event
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\EntityListeners({"AppBundle\Listener\EventListener"})
  */
 class Event
 {
@@ -63,6 +65,12 @@ class Event
      */
     private $maxCapacity;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="event", cascade={"persist"})
+     **/
+    private $tickets;
+
+
 
     /**
      * @Assert\Callback
@@ -73,6 +81,10 @@ class Event
                 ->atPath('eventEnd')
                 ->addViolation();
         }
+    }
+
+    public function __construct() {
+        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -228,4 +240,21 @@ class Event
     {
         return $this->maxCapacity;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * @param mixed $tickets
+     */
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
+    }
+
 }

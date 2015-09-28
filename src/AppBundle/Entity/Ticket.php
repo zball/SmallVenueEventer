@@ -21,6 +21,27 @@ class Ticket extends Product
     private $barcode;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="tickets")
+     **/
+    private $event;
+
+    /**
+     * @return mixed
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param mixed $event
+     */
+    public function setEvent($event)
+    {
+        $this->event = $event;
+    }
+
+    /**
      * @return int
      */
     public function getBarcode()
