@@ -2,35 +2,32 @@
 
 namespace AppBundle\Listener;
 
+use AppBundle\Model\TicketManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreFlushEventArgs;
-use AppBundle\Entity\Ticket;
+use AppBundle\Entity\Event;
 
 
 class EventListener {
 
-    private $event;
-    private $ticket;
+    private $ticketManager;
 
-    public function __construct(Ticket $ticket){
-        $this->ticket = $ticket;
+    public function __construct(TicketManagerInterface $tm){
+        $this->ticketManager = $tm;
     }
 
-    public function prePersist(LifecycleEventArgs $args){
-
-        $this->event = $args->getEntity();
-
-    }
-
-    public function preFlush(PreFlushEventArgs $args){
+    public function prePersist(Event $event, LifecycleEventArgs $args){
 
         $em = $args->getEntityManager();
 
-        $this->ticket->setBarcode(785885);
-        $this->ticket->setPrice(15.50);
-        $this->ticket->setEvent($this->event);
-        $em->persist($this->ticket);
+        $ticket = $this->ticketManager->createTicket();
+
+        $ticket->setBarcode(785885);
+        $ticket->setPrice(15.50);
+        $ticket->setEvent($event);
+
+        $em->persist($ticket);
 
     }
+
 
 }
