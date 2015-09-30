@@ -7,3 +7,14 @@ services:
     app.cart_item_resolver:
         class:    AppBundle\Cart\ItemResolver
         arguments:    ["@doctrine.orm.entity_manager"]
+
+    app.entity_listener.event:
+        class: AppBundle\Listener\EventListener
+        arguments: ["@app.ticket.entity"]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preFlush }
+
+
+    app.ticket.entity:
+        class: AppBundle\Entity\Ticket

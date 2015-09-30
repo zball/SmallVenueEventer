@@ -12,7 +12,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @ORM\EntityListeners({"AppBundle\Listener\EventListener"})
  */
 class Event
 {
@@ -66,7 +65,7 @@ class Event
     private $maxCapacity;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="event", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="event")
      **/
     private $tickets;
 
