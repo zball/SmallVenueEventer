@@ -2,28 +2,30 @@
 
 namespace AppBundle\Listener;
 
-use AppBundle\Model\TicketManagerInterface;
+use AppBundle\Factory\ProductFactoryInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use AppBundle\Entity\Event;
 
 
 class EventListener {
 
-    private $ticketManager;
+    private $ticketFactory;
 
-    public function __construct(TicketManagerInterface $tm){
-        $this->ticketManager = $tm;
+    public function __construct(ProductFactoryInterface $pfi)
+    {
+        $this->ticketFactory = $pfi;
     }
 
     public function prePersist(Event $event, LifecycleEventArgs $args){
 
         $em = $args->getEntityManager();
 
-        $ticket = $this->ticketManager->createTicket();
-
-        $ticket->setBarcode(785885);
-        $ticket->setPrice(15.50);
-        $ticket->setEvent($event);
+        $ticketData = [
+            'price' => $event->getTicketPrice(),
+            'event' => $event,
+            'barcode' => 497598347593729875
+        ];
+        $ticket = $this->ticketFactory->create($ticketData);
 
         $em->persist($ticket);
 

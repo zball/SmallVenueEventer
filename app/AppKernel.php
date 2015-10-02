@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Endroid\Bundle\QrCodeBundle\EndroidQrCodeBundle(),
             new AppBundle\AppBundle(),
         );
 

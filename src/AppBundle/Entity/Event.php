@@ -66,6 +66,14 @@ class Event
     private $maxCapacity;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="ticketPrice", type="decimal", scale=2)
+     * @Assert\GreaterThan(value="0")
+     */
+    private $ticketPrice;
+
+    /**
      * @ORM\OneToMany(targetEntity="Ticket", mappedBy="event", cascade={"persist"})
      **/
     private $tickets;
@@ -255,6 +263,22 @@ class Event
     public function setTickets($tickets)
     {
         $this->tickets = $tickets;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTicketPrice()
+    {
+        return $this->ticketPrice;
+    }
+
+    /**
+     * @param int $ticketPrice
+     */
+    public function setTicketPrice($ticketPrice)
+    {
+        $this->ticketPrice = $ticketPrice;
     }
 
 }

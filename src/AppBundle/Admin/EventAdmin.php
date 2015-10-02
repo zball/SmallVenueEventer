@@ -34,6 +34,7 @@ class EventAdmin extends Admin{
                 'data' => 'all_ages'
             ])
             ->add('maxCapacity')
+            ->add('ticketPrice')
 
         ;
 
