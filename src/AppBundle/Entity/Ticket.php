@@ -37,10 +37,12 @@ class Ticket extends Product
 
     /**
      * @param mixed $event
+     * @return Ticket
      */
     public function setEvent($event)
     {
         $this->event = $event;
+        return $this;
     }
 
     /**
@@ -53,9 +55,11 @@ class Ticket extends Product
 
     /**
      * @param int $barcode
+     * @return Ticket
      */
     public function setBarcode($barcode)
     {
         $this->barcode = $barcode;
+        return $this;
     }
 }

@@ -17,18 +17,32 @@ class EventListener {
     }
 
     public function prePersist(Event $event, LifecycleEventArgs $args){
+        $ticket = $this->createTicket($event);
+        $this->persistTicket($args, $ticket);
+    }
 
-        $em = $args->getEntityManager();
-
+    /**
+     * @param Event $event
+     * @return mixed
+     */
+    public function createTicket(Event $event)
+    {
         $ticketData = [
             'price' => $event->getTicketPrice(),
-            'event' => $event,
-            'barcode' => 497598347593729875
+            'event' => $event
         ];
         $ticket = $this->ticketFactory->create($ticketData);
+        return $ticket;
+    }
 
+    /**
+     * @param LifecycleEventArgs $args
+     * @param $ticket
+     */
+    public function persistTicket(LifecycleEventArgs $args, $ticket)
+    {
+        $em = $args->getEntityManager();
         $em->persist($ticket);
-
     }
 
 

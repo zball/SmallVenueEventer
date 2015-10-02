@@ -20,8 +20,4 @@ class TicketManager implements TicketManagerInterface{
         return $ticket;
 
     }
-
-    public function setEntityManager(EntityManager $em){
-        $this->entityManager = $em;
-    }
 }
