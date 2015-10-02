@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vivait\StringGeneratorBundle\Annotation\GeneratorAnnotation as Generate;
 use AppBundle\Entity\Product;
 
 /**
@@ -17,6 +18,7 @@ class Ticket extends Product
      * @var integer
      *
      * @ORM\Column(name="barcode")
+     * @Generate(generator="secure_string")
      */
     private $barcode;
 

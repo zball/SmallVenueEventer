@@ -26,7 +26,8 @@
         "sonata-project/user-bundle": "^2.2",
         "knplabs/knp-menu-bundle": "~1.1",
         "sylius/cart-bundle": "^0.15.0",
-        "endroid/qrcode-bundle": "^1.5"
+        "endroid/qrcode-bundle": "^1.5",
+        "vivait/string-generator-bundle": "~1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
