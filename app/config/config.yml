@@ -117,6 +117,7 @@ sylius_cart:
     classes:
         cart:
             controller: AppBundle\Controller\CartController
+            form: AppBundle\Form\Type\CartType
 
 sylius_order:
     driver: doctrine/orm # Configure the doctrine orm driver used in documentation.

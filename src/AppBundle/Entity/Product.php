@@ -32,6 +32,12 @@ class Product {
     private $price;
 
     /**
+     * @ORM\OneToOne(targetEntity="InventoryUnit", mappedBy="product")
+     **/
+    private $inventoryUnit;
+
+
+    /**
      * @return int
      */
     public function getPrice()
@@ -56,6 +62,24 @@ class Product {
     public function getId()
     {
         return $this->id;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getInventoryUnit()
+    {
+        return $this->inventoryUnit;
+    }
+
+    /**
+     * @return InventoryUnit
+     * @param mixed $inventoryUnit
+     */
+    public function setInventoryUnit($inventoryUnit)
+    {
+        $this->inventoryUnit = $inventoryUnit;
     }
 
 }

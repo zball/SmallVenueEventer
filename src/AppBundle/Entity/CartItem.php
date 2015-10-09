@@ -41,4 +41,17 @@ class CartItem extends BaseCartItem
     {
         return $this->ticket;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUnitPrice($unitPrice)
+    {
+        if (!is_float($unitPrice)) {
+            throw new \InvalidArgumentException('Unit price must be an integer.');
+        }
+        $this->unitPrice = $unitPrice;
+
+        return $this;
+    }
 }

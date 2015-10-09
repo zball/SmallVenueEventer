@@ -1,0 +1,15 @@
+{#{% set form = sylius_cart_form() %} &#123;&#35; You can pass options as an argument. &#35;&#125;#}
+
+{#<form action="{{ path('sylius_cart_item_add', {'ticketId': ticket.id}) }}" method="post">#}
+    {#{{ form_row(form.quantity)}}#}
+    {#{{ form_widget(form._token) }}#}
+    {#<input type="submit" value="Add to cart">#}
+{#</form>#}
+
+{#{{ form(form) }}#}
+
+{{ form_start(form) }}
+{{ form_row(form.quantity) }}
+{{ form_widget(form._token) }}
+<input type="submit" value="Add to cart" />
+{{ form_rest(form) }}

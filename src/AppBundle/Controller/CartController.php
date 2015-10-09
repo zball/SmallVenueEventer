@@ -16,7 +16,7 @@ class CartController extends BaseController
     public function summaryAction()
     {
         $cart = $this->getCurrentCart();
-        $form = $this->createForm('sylius_cart', $cart);
+        $form = $this->createForm('sylius_cart', $cart, ['action' => $this->generateUrl('sylius_cart_save')]);
 
         $view = $this
             ->view()

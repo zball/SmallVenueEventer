@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Event
@@ -74,9 +73,9 @@ class Event
     private $ticketPrice;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="event", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Ticket", mappedBy="event", cascade={"persist"})
      **/
-    private $tickets;
+    private $ticket;
 
 
 
@@ -89,10 +88,6 @@ class Event
                 ->atPath('eventEnd')
                 ->addViolation();
         }
-    }
-
-    public function __construct() {
-        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -150,10 +145,6 @@ class Event
     {
         return $this->venue;
     }
-
-    
-
-
 
     /**
      * Set eventStart
@@ -249,21 +240,7 @@ class Event
         return $this->maxCapacity;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTickets()
-    {
-        return $this->tickets;
-    }
 
-    /**
-     * @param mixed $tickets
-     */
-    public function setTickets($tickets)
-    {
-        $this->tickets = $tickets;
-    }
 
     /**
      * @return int
@@ -281,4 +258,27 @@ class Event
         $this->ticketPrice = $ticketPrice;
     }
 
+
+    /**
+     * Set ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     * @return Event
+     */
+    public function setTicket(\AppBundle\Entity\Ticket $ticket = null)
+    {
+        $this->ticket = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Get ticket
+     *
+     * @return \AppBundle\Entity\Ticket 
+     */
+    public function getTicket()
+    {
+        return $this->ticket;
+    }
 }

@@ -6,7 +6,7 @@ parameters:
 services:
     app.cart_item_resolver:
         class:    AppBundle\Cart\ItemResolver
-        arguments:    ["@doctrine.orm.entity_manager"]
+        arguments:    ["@doctrine.orm.entity_manager", "@form.factory", "@sylius.controller.cart_item"]
 
     app.entity_listener.event:
         class: AppBundle\Listener\EventListener
@@ -17,4 +17,7 @@ services:
     app.factory.ticket:
         class: AppBundle\Factory\TicketFactory
 
-
+    app.sylius.cart.listener:
+        class: AppBundle\Listener\CartListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.cart_item.add.initialize, method: onProductAdd }

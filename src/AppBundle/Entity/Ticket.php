@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Vivait\StringGeneratorBundle\Annotation\GeneratorAnnotation as Generate;
+use AppBundle\Entity\StockableProductInterface;
 use AppBundle\Entity\Product;
 
 /**
@@ -12,7 +13,7 @@ use AppBundle\Entity\Product;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\TicketRepository")
  */
-class Ticket extends Product
+class Ticket extends Product implements StockableProductInterface
 {
     /**
      * @var integer
@@ -23,9 +24,10 @@ class Ticket extends Product
     private $barcode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="tickets")
+     * @ORM\OneToOne(targetEntity="Event", inversedBy="ticket")
      **/
     private $event;
+
 
     /**
      * @return mixed
