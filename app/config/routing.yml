@@ -37,8 +37,3 @@ sonata_user:
 sylius_cart:
     resource: '@SyliusCartBundle/Resources/config/routing.yml'
     prefix: /cart
-
-#test_cart:
-#    resource: "@AppBundle/Controller/"
-#    type:     annotation
-#    prefix:   /testCart

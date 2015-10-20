@@ -27,7 +27,9 @@
         "knplabs/knp-menu-bundle": "~1.1",
         "sylius/cart-bundle": "^0.15.0",
         "endroid/qrcode-bundle": "^1.5",
-        "vivait/string-generator-bundle": "~1.1"
+        "vivait/string-generator-bundle": "~1.1",
+        "stripe/stripe-php": "3.*",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -60,7 +62,6 @@
     },
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "html",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"

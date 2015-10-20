@@ -1,3 +1,10 @@
-{{ dump(form) }}
-{{ form(form) }}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {{ dump(form) }}
+    {{ form(form) }}
+
+    <a href="{{ path('cart_checkout') }}">Checkout</a>
+{% endblock %}
+
 

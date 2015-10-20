@@ -1,13 +1,5 @@
 <?php
 
-/**
- * This file is part of the <name> project.
- *
- * (c) <yourname> <youremail>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
 namespace Application\Sonata\UserBundle\Entity;
 
@@ -33,10 +25,21 @@ class User extends BaseUser
      */
     protected $venues;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\BillingAddress", mappedBy="user")
+     **/
+    private $billingAddress;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RedeemableTicket", mappedBy="user")
+     **/
+    private $redeemableTickets;
+
     public function __construct()
     {
         parent::__construct();
         $this->venues = new ArrayCollection();
+        $this->redeemableTickets = new ArrayCollection();
     }
 
     /**
@@ -65,4 +68,83 @@ class User extends BaseUser
         $this->venues = $venues;
     }
 
+
+    /**
+     * Add venues
+     *
+     * @param \AppBundle\Entity\Venue $venues
+     * @return User
+     */
+    public function addVenue(\AppBundle\Entity\Venue $venues)
+    {
+        $this->venues[] = $venues;
+
+        return $this;
+    }
+
+    /**
+     * Remove venues
+     *
+     * @param \AppBundle\Entity\Venue $venues
+     */
+    public function removeVenue(\AppBundle\Entity\Venue $venues)
+    {
+        $this->venues->removeElement($venues);
+    }
+
+    /**
+     * Set billingAddress
+     *
+     * @param \AppBundle\Entity\BillingAddress $billingAddress
+     * @return User
+     */
+    public function setBillingAddress(\AppBundle\Entity\BillingAddress $billingAddress = null)
+    {
+        $this->billingAddress = $billingAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get billingAddress
+     *
+     * @return \AppBundle\Entity\BillingAddress 
+     */
+    public function getBillingAddress()
+    {
+        return $this->billingAddress;
+    }
+
+    /**
+     * Add redeemableTickets
+     *
+     * @param \AppBundle\Entity\RedeemableTicket $redeemableTickets
+     * @return User
+     */
+    public function addRedeemableTicket(\AppBundle\Entity\RedeemableTicket $redeemableTickets)
+    {
+        $this->redeemableTickets[] = $redeemableTickets;
+
+        return $this;
+    }
+
+    /**
+     * Remove redeemableTickets
+     *
+     * @param \AppBundle\Entity\RedeemableTicket $redeemableTickets
+     */
+    public function removeRedeemableTicket(\AppBundle\Entity\RedeemableTicket $redeemableTickets)
+    {
+        $this->redeemableTickets->removeElement($redeemableTickets);
+    }
+
+    /**
+     * Get redeemableTickets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRedeemableTickets()
+    {
+        return $this->redeemableTickets;
+    }
 }

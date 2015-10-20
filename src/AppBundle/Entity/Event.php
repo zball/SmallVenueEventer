@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Event
@@ -76,6 +77,33 @@ class Event
      * @ORM\OneToOne(targetEntity="Ticket", mappedBy="event", cascade={"persist"})
      **/
     private $ticket;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RedeemableTicket", mappedBy="event")
+     **/
+    private $redeemableTickets;
+
+    function __construct()
+    {
+        $this->redeemableTickets = new ArrayCollection();
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getRedeemableTickets()
+    {
+        return $this->redeemableTickets;
+    }
+
+    /**
+     * @param mixed $redeemableTickets
+     */
+    public function setRedeemableTickets($redeemableTickets)
+    {
+        $this->redeemableTickets = $redeemableTickets;
+    }
 
 
 
