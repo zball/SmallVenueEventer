@@ -29,23 +29,6 @@ class Ticket extends Product implements StockableProductInterface
     private $event;
 
 
-    /**
-     * @return mixed
-     */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-
-    /**
-     * @param mixed $event
-     * @return Ticket
-     */
-    public function setEvent($event)
-    {
-        $this->event = $event;
-        return $this;
-    }
 
     /**
      * @return int
@@ -63,5 +46,28 @@ class Ticket extends Product implements StockableProductInterface
     {
         $this->barcode = $barcode;
         return $this;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \AppBundle\Entity\Event $event
+     * @return Ticket
+     */
+    public function setEvent(\AppBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \AppBundle\Entity\Event 
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }

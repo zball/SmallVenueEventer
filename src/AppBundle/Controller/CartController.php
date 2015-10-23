@@ -16,6 +16,7 @@ class CartController extends BaseController
     public function summaryAction()
     {
         $cart = $this->getCurrentCart();
+
         $form = $this->createForm('sylius_cart', $cart, ['action' => $this->generateUrl('sylius_cart_save')]);
 
         $view = $this
@@ -23,8 +24,7 @@ class CartController extends BaseController
             ->setTemplate($this->config->getTemplate('summary.html'))
             ->setData(array(
                 'cart' => $cart,
-                'form' => $form->createView(),
-                'test' => 'test'
+                'form' => $form->createView()
             ))
         ;
 

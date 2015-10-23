@@ -1,8 +1,14 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    {{ dump(form) }}
-    {{ form(form) }}
+
+    {{ dump(cart) }}{{ dump(form) }}
+
+    {{ cart.items[0].id }}
+    {{ form_start(form) }}
+    {% for item in form.items %}
+        <li>{{ form_row(item.quantity) }}</li>
+    {% endfor %}
 
     <a href="{{ path('cart_checkout') }}">Checkout</a>
 {% endblock %}

@@ -21,3 +21,8 @@ services:
         class: AppBundle\Listener\CartListener
         tags:
             - { name: kernel.event_listener, event: sylius.cart_item.add.initialize, method: onProductAdd }
+
+    login_listener:
+            class: 'AppBundle\Listener\UserLoginListener'
+            tags:
+                - { name: 'kernel.event_listener', event: 'security.interactive_login' }

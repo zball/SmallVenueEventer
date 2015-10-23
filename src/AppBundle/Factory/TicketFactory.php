@@ -9,9 +9,12 @@ class TicketFactory implements ProductFactoryInterface{
     public function create(Array $ticketData){
 
         $ticket = new Ticket();
-        $ticket
-            ->setPrice($ticketData['price'])
-            ->setEvent($ticketData['event']);
+
+//        echo '<pre>';
+//        \Doctrine\Common\Util\Debug::dump($ticket); exit;
+
+        $ticket->setEvent($ticketData['event']);
+        $ticket->setPrice($ticketData['price']);
         return $ticket;
     }
 
