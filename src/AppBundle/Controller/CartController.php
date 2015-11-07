@@ -15,7 +15,8 @@ class CartController extends BaseController
      */
     public function summaryAction()
     {
-        $cart = $this->getCurrentCart();
+        $cart = $this->isLoggedIn() ? $this->setUsersCart() : $this->getCurrentCart();
+
 
         $form = $this->createForm('sylius_cart', $cart, ['action' => $this->generateUrl('sylius_cart_save')]);
 
@@ -29,6 +30,17 @@ class CartController extends BaseController
         ;
 
         return $this->handleView($view);
+    }
+
+    public function setUsersCart(){
+        $cart = $this->getUser()->getCart();
+        $this->get('sylius.cart_provider')->setCart($cart);
+        return $cart;
+    }
+
+    public function isLoggedIn(){
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
+            return true;
     }
 
 }

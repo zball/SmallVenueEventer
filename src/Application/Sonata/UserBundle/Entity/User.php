@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\EntityListeners({ "AppBundle\Listener\UserListener" })
  */
 class User extends BaseUser
 {
@@ -34,6 +35,18 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\RedeemableTicket", mappedBy="user")
      **/
     private $redeemableTickets;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="customerId", type="string", length=255)
+     */
+    private $customerId = 0;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Sylius\Component\Cart\Model\Cart", cascade={"persist"}, fetch="EAGER")
+     **/
+    private $cart;
 
     public function __construct()
     {
@@ -146,5 +159,48 @@ class User extends BaseUser
     public function getRedeemableTickets()
     {
         return $this->redeemableTickets;
+    }
+
+    /**
+     * Get customerId
+     * @return mixed
+     */
+    public function getCustomerId(){
+        return $this->customerId;
+    }
+
+    /**
+     * Set customerId
+     * @param string
+     *
+     * @return User
+     */
+    public function setCustomerId($customerId){
+        $this->customerId = $customerId;
+        return $this;
+    }
+
+
+    /**
+     * Set cart
+     *
+     * @param \Sylius\Component\Cart\Model\Cart $cart
+     * @return User
+     */
+    public function setCart(\Sylius\Component\Cart\Model\Cart $cart = null)
+    {
+        $this->cart = $cart;
+
+        return $this;
+    }
+
+    /**
+     * Get cart
+     *
+     * @return \Sylius\Component\Cart\Model\Cart 
+     */
+    public function getCart()
+    {
+        return $this->cart;
     }
 }

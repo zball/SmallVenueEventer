@@ -47,19 +47,9 @@ class EventController extends Controller{
         $form = $this->createForm('sylius_cart_item', $product, [
                 'action' => $this->generateUrl('sylius_cart_item_add', ['ticketId' => $ticket->getId()] )] );
 
-
-        $stripeConfig = array(
-            "secret_key"      => "sk_test_zFEvKCrZIrpIJCeIaj9DbrPy",
-            "publishable_key" => "pk_test_jD4GyyLxXT2uyDZrbReDPL1G"
-        );
-
-        $stripe = new Stripe();
-        $stripe->setApiKey($stripeConfig['secret_key']);
-
         return $this->render('default/event.html.twig', array(
             'ticket' => $ticket,
-            'form' => $form->createView(),
-            'pk' => $stripeConfig['publishable_key']
+            'form' => $form->createView()
         ));
 
     }

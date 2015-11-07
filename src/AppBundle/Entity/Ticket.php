@@ -15,6 +15,8 @@ use AppBundle\Entity\Product;
  */
 class Ticket extends Product implements StockableProductInterface
 {
+
+
     /**
      * @var integer
      *
@@ -24,7 +26,7 @@ class Ticket extends Product implements StockableProductInterface
     private $barcode;
 
     /**
-     * @ORM\OneToOne(targetEntity="Event", inversedBy="ticket")
+     * @ORM\OneToOne(targetEntity="Event", inversedBy="ticket", fetch="EAGER")
      **/
     private $event;
 
@@ -70,4 +72,5 @@ class Ticket extends Product implements StockableProductInterface
     {
         return $this->event;
     }
+
 }

@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+confirmation page
+
+    {{ dump(customer) }}
+    {{ customer.sources.data[0].last4 }}
+
+    <a href="{{ path('cart_checkout_receipt') }}">Confirm Order</a>
+{% endblock %}
+
+{% block javascripts %}
+
+
+{% endblock %}

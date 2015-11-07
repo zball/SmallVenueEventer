@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class CartItem extends BaseCartItem
 {
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ticket")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ticket", fetch="EAGER")
      */
     private $ticket;
 

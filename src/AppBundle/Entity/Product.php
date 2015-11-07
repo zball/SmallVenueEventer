@@ -6,11 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Product
- *
- * @ORM\Entity
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"product" = "AppBundle\Entity\Product", "ticket" = "AppBundle\Entity\Ticket"})
+ * @ORM\MappedSuperclass
  */
 
 class Product {
@@ -30,12 +26,6 @@ class Product {
      * @ORM\Column(name="price", type="decimal", scale=2)
      */
     private $price;
-
-    /**
-     * @ORM\OneToOne(targetEntity="InventoryUnit", mappedBy="product")
-     **/
-    private $inventoryUnit;
-
 
     /**
      * @return int
@@ -64,22 +54,5 @@ class Product {
         return $this->id;
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getInventoryUnit()
-    {
-        return $this->inventoryUnit;
-    }
-
-    /**
-     * @return InventoryUnit
-     * @param mixed $inventoryUnit
-     */
-    public function setInventoryUnit($inventoryUnit)
-    {
-        $this->inventoryUnit = $inventoryUnit;
-    }
 
 }

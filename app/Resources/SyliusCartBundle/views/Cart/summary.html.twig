@@ -1,14 +1,26 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
-    {{ dump(cart) }}{{ dump(form) }}
-
-    {{ cart.items[0].id }}
     {{ form_start(form) }}
-    {% for item in form.items %}
-        <li>{{ form_row(item.quantity) }}</li>
-    {% endfor %}
+    <table class="table">
+        <tr>
+            <td>Ticket</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td></td>
+        </tr>
+        {% for item in form.items %}
+            <tr>
+                <td>{{  item.vars.data.ticket.event.title }}</td>
+                <td>{{ form_row(item.quantity) }}</td>
+                <td>${{  item.vars.data.unitPrice }}</td>
+                <td><a href="{{ path('sylius_cart_item_remove', {'id': item.vars.data.id}) }}">Remove from cart</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <input type="submit" value="Update" />
+    {{ form_rest(form) }}
 
     <a href="{{ path('cart_checkout') }}">Checkout</a>
 {% endblock %}
